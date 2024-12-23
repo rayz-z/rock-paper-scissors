@@ -14,15 +14,33 @@ function getComputerPlay() {
     }
 };
 
+/*
 function getPlayerPlay() {
-    let playerOut = prompt("Please choose rock, paper or scissors: ");
-    playerOut.toLowerCase();
+    let playerOut;
+    const rock = document.createElement("button");
+    const paper = document.createElement("button");
+    const scissors = document.createElement("button");
+
+    rock.textContent = "rock";
+    paper.textContent = "paper";
+    scissors.textContent = "scissors";
+
+    // add rock/paper/scissors buttons to div?
+    
+    rock.addEventListener("click", () => {
+        playerOut = "rock"
+    });
+    paper.addEventListener("click", () => {
+        playerOut = "paper"
+    });
+    scissors.addEventListener("click", () => {
+        playerOut = "scissors"
+    });
     return playerOut;
 }
+*/
 
-function playRound() {
-    let computerPlay = getComputerPlay();
-    let playerPlay = getPlayerPlay();
+function roundResult(playerPlay, computerPlay) {
 
     if (playerPlay == computerPlay) {
         console.log("computer play: ", computerPlay);
@@ -84,6 +102,7 @@ function resetScore() {
     console.log("Scores reset")
 }
 
+/*
 function playGame() {
     for (let i=0; i < 5; i++) {
         playRound();
@@ -98,3 +117,77 @@ function playGame() {
     }
     resetScore();
 }
+*/
+const body = document.querySelector("body");
+const compScore = document.querySelector("#compScore");
+const playScore = document.querySelector("#playScore");
+
+compScore.textContent = `computer score: ${playerScore}`;
+playScore.textContent = `player score: ${computerScore}`;
+
+const playBtn = document.querySelector("#playBtn");
+playBtn.addEventListener("click", () => {
+    let playerOut;
+    let computerOut;
+    const rock = document.createElement("button");
+    const paper = document.createElement("button");
+    const scissors = document.createElement("button");
+
+    body.appendChild(rock);
+    body.appendChild(paper);
+    body.appendChild(scissors);
+
+    rock.textContent = "rock";
+    paper.textContent = "paper";
+    scissors.textContent = "scissors";
+
+    // add rock/paper/scissors buttons to div?
+    
+    rock.addEventListener("click", () => {
+        playerOut = "rock";
+        computerOut = getComputerPlay();
+
+        console.log(roundResult(computerOut, playerOut));
+        /*
+        const res = document.createElement("h3");
+        res.textContent = 
+        body.appendChild(res);
+        */
+       body.removeChild(rock);
+       body.removeChild(paper);
+       body.removeChild(scissors);
+
+       compScore.textContent = `computer score: ${computerScore}`;
+       playScore.textContent = `player score: ${playerScore}`;
+       
+    });
+    paper.addEventListener("click", () => {
+        playerOut = "paper";
+        computerOut = getComputerPlay();
+
+        console.log(roundResult(computerOut, playerOut));
+
+        body.removeChild(rock);
+        body.removeChild(paper);
+        body.removeChild(scissors);
+
+        compScore.textContent = `computer score: ${computerScore}`;
+        playScore.textContent = `player score: ${playerScore}`;
+        
+    });
+    scissors.addEventListener("click", () => {
+        playerOut = "scissors";
+        computerOut = getComputerPlay();
+
+        console.log(roundResult(computerOut, playerOut));
+
+        body.removeChild(rock);
+        body.removeChild(paper);
+        body.removeChild(scissors);
+
+        compScore.textContent = `computer score: ${computerScore}`;
+        playScore.textContent = `player score: ${playerScore}`;
+        
+    });
+});
+
